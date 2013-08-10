@@ -261,13 +261,15 @@ class Grafico:
 		pygame.display.update()
 		pygame.time.wait(self.TIEMPO_ESPERA)
 
-	""" Dibuja el tablero """
+
+	""" Dibuja el tablero. """
 	def iniciarAnimacionJuego(self):
 		self.SUPERFICIE.fill(self.logico.getColorFondo())
 		self.dibujarTablero()
 		pygame.display.update()
 		
-		
+	""" Cuando el juego ha terminado hace un efecto flash en el fondo y comienza 
+	un nuevo juego. """		
 	def animacionFinJuego(self, s):
 		color1 = self.logico.getColorFondo()
 		color2 = self.logico.getColorFondoClaro()
@@ -344,10 +346,12 @@ class Logico:
 		return deepcopy(self.tablero)
 		
 		
+	""" Agrega el bonus de 1000 puntos al total de puntuacion. """	
 	def ganoJuego(self):
 		self.puntosTotales += 1000
 		
 		
+	""" Resetea la puntuacion para empezar un nuevo juego. """
 	def resetearPuntosTotales(self):
 		self.puntosTotales = 0	
 		
@@ -370,6 +374,7 @@ class Logico:
 		return self.juegoTerminado
 		
 		
+	""" Resetea la puntuacion e inicia un nuevo juego."""	
 	def nuevoJuego(self):
 		self.resetearPuntosTotales()
 		self.generarTablero()
@@ -502,7 +507,8 @@ class Logico:
 		self.moverColumnas()
 		self.comprobarJuego()
 		
-		
+	
+	""" Comprueba si no hay mas jugadas o si ya se comio todo el tablero """
 	def comprobarJuego(self):
 		self.juegoTerminado = True;
 		controlColumna = 0
